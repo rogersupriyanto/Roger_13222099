@@ -1,0 +1,10 @@
+Penjelasan Komunikasi antar Mikrokontroller
+
+Komunikasi antara mikrokontroller terdiri atas
+1. UART (Universal Asynchronous Receiver-Transmitter):
+Komunikasi UART terdiri atas start bit, data bit dan stop bit dari sisi transmitter (pengirim data). Start bit akan menunjukkan kapan data transmitter akan mengirim data. Setelah itu,data bits yang berisi 8-bit akan mengtransmisikan data-data bits tersebut ke penerima data(receiver). Kemudian, ada stop bit yang menandakan bahwa kapan si data-bits tersebut akan berhenti mengtransfer data ke receiver.
+
+2. SPI (Serial Peripheral Interface) : 
+Komunikasi SPI menggunakan clock tidak seperti UART. Pada komunikasi ini, terdapat istilah master yaitu yang menghasilkan clock dan memulai komunikasi ke slave-slave yang ada dan slave yaitu yang menerima dan merespons master. Untuk sinyal-sinyal pada SPI sendiri, kita menggunakan SCLK (Serial Clock) =  untuk mengatur waktu saat melakukan transmisi data, MOSI(Master Out Slave In) = sinyal yang mengirimkan data dari master ke slave, MISO (Master In Slave Out) = sinyal yang mengirimkan data dari slave ke master, SS (Slave Select). 
+Dalam master SPI, bit akan dikirimkan dari MOSI pin dan diterima oleh pin MISO. Kemudian, bit yang dikirim akan disimpan dalam SPI data register dengan nama SP0DR dan data yang akan dikirim dimulai dari MSB (Most Significant Bit) yaitu bit ke 7. 
+Ketika bit ke 7 dari master dikirim ke pin MOSI, maka bit-7 dari slave akan digeser ke bit 0 master melalui pin MISO dan akan begitu terus sampai 8 clock. ketika sudah terjadi 8 clock, maka bit tersebut akan berhenti di bit ke 7 dari master sehingga mereka seperti menukar satu sama lain.
